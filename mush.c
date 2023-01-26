@@ -14,6 +14,7 @@ int main(void) {
         char userString[2048] = {};
         char* tokenStorage[128] = {};
         int count = 0;
+
         printf("MUSH $ ");
         fgets(userString, 2048, stdin);
         token = strtok(userString, delimiter);
@@ -23,17 +24,19 @@ int main(void) {
             count++;
             token = strtok(NULL, delimiter);
         }
+
         tokenStorage[count] = NULL;
 
         if (strcmp(tokenStorage[0], "cd") == 0) {
             chdirValue = chdir(tokenStorage[1]);
+
             if (chdirValue == -1) {
                 perror("directory");
             }
             continue;
         }
 
-        if(strcmp(tokenStorage[0], "exit") == 0) {
+        if (strcmp(tokenStorage[0], "exit") == 0) {
             exit(0);
         }
 
